@@ -25,7 +25,7 @@ def sentiment():
 
     # check if sentence is valid
     if sentence and len(sentence) > 0:
-        return sa.get_sentiment(sentence)
+        return sa.response_sentiment(sentence)
     # else return error
     else:
         # TODO: handle error

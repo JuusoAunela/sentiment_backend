@@ -21,3 +21,31 @@ def get_sentiment(text):
   # Sentence is neutral
   else:
     return "Neutral"
+  
+# Return JSON object of full analysis
+def response_all(text):
+  return {
+    "polarity": get_polarity(text),
+    "subjectivity": get_subjectivity(text),
+    "sentiment": get_sentiment(text)
+  }
+
+# Return polarity analysis result in JSON
+def response_polarity(text):
+  return {
+    "polarity": get_polarity(text),
+    "sentiment": get_sentiment(text)
+  }
+
+# Return subjectivity analysis result in JSON
+def response_subjectivity(text):
+  return {
+    "subjectivity": get_subjectivity(text),
+    "sentiment": get_sentiment(text)
+  }
+
+# Return sentiment analysis result in JSON
+def response_sentiment(text):
+  return {
+    "sentiment": get_sentiment(text)
+    }
