@@ -1,3 +1,5 @@
 Flask
 textblob
 supabase
+dotenv
+os
