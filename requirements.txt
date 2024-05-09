@@ -1,5 +1,4 @@
 Flask
 textblob
 supabase
-dotenv
-os
+python-dotenv
