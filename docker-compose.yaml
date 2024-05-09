@@ -2,6 +2,8 @@ version: '3'
 
 services:
   python-backend:
+    env_file:
+      - .env
     build: .
     ports:
       - "5000:8080"
