@@ -19,9 +19,12 @@ def index():
     return 'Hello World!'
 
 # Return sentiment analysis result
-@app.route('/sentiment', methods=['POST'])
+@app.route('/sentiment', methods=['OPTIONS','POST'])
 def sentiment_analysis():
-    return sentiment_service.sentiment(request)
+    if request.method == 'OPTIONS':
+        return '', 200
+    sentence = request.json['sentence']
+    return sentiment_service.sentiment(sentence)
 
 @app.route('/feedback', methods=['OPTIONS', 'POST'])
 def feedback():
@@ -38,6 +41,6 @@ def listing():
 
 if __name__ == '__main__':
     #run at localhost
-    # app.run(debug=True)
+    #app.run(debug=True)
     # run live
     app.run(host='0.0.0.0', port=8080)
