@@ -2,3 +2,4 @@ Flask
 textblob
 supabase
 python-dotenv
+pandas

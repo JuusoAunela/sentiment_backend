@@ -1,6 +1,8 @@
 from textblob import TextBlob
+from Handlers import training_handler as th
 
-# sentiment analysis from previous task assignment
+classifier = th.basic_training()
+#print('This is the classifier : ' + classifier)
 
 # Analyze the polarity of the sentence
 def get_polarity(text):
@@ -64,3 +66,11 @@ def response_sentiment(text):
   return {
     "sentiment": get_sentiment(text)
     }
+
+def cl_sentiment(text):
+  return classifier.classify(text)
+
+def cl_probability(text):
+  resp = classifier.prob_classify(text)
+  resp1 = str(resp.max())
+  return {'resp': resp1}

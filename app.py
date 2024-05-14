@@ -1,5 +1,6 @@
 from flask import Flask, request
 from Services import sentiment_service, db_service
+from Handlers import sentiment_handler
 
 app = Flask(__name__)
 
@@ -11,7 +12,9 @@ def after_request(response):
     response.headers.add('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS')
     return response
 
-
+#@app.before_request
+#def run_on_start():
+#    training_handler.basic_training()
 
 # Test route
 @app.route('/')
@@ -37,10 +40,18 @@ def feedback():
 @app.route('/review', methods=['GET'])
 def listing():
     return db_service.get_all()
-    
+
+@app.route('/test', methods=['OPTIONS', 'POST'])
+def test():
+    if request.method == 'OPTIONS':
+        return '', 200
+    #sentiment = sentiment_handler.cl_sentiment(request.json['sentence'])
+    #probability = sentiment_handler.cl_probability(request.json['sentence'])
+    #return sentiment.jsonify(sentiment=sentiment, probability=probability)
+    return sentiment_handler.cl_probability(request.json['sentence'])
 
 if __name__ == '__main__':
-    #run at localhost
-    #app.run(debug=True)
+    # run at localhost
+    app.run(debug=False)
     # run live
-    app.run(host='0.0.0.0', port=8080)
+    # app.run(host='0.0.0.0', port=8080)
